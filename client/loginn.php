@@ -27,14 +27,17 @@
             // Verify the password
             if (password_verify($password, $row['password'])) {
                 // Successful login
-                $_SESSION['email'] = $row['email'];
+               // $_SESSION['email'] = $row['email'];
+                $_SESSION['firstName'] = $row['firstName'];
+                $_SESSION['lastName'] = $row['lastName'];
+                $_SESSION['phoneNumber'] = $row['phoneNumber'];
                 //echo '<script>showLoginSuccessModal();</script>';
                 header("Location: selectionActivity.php");
                 exit;
             } else {
                 // Incorrect password
                 echo "Incorrect password. Please try again or register.";
-                header("Location: login.php?message=Incorrect password. Please try again or register.");
+                header("Location: login.php?message=Incorrect username/password. Please try again.");
                 exit;
             }
         } else {

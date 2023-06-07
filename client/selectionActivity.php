@@ -14,6 +14,7 @@
     <title>Sports Selection</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href=" http://localhost/fitkonect/css/style.css">
     <style>
         .box {
             border: 1px solid #000000;
@@ -27,16 +28,25 @@
         .box.active {
             background-color: #08a0e9;
         }
+        body{
+            background-color: aliceblue;
+        }
+        .navbar{
+            padding: 10px;
+        }
+        .selection_activity{
+            margin-top: 10%;
+        }
     </style>
 </head>
 <body>
 
-
+<?php include 'login-nav-bar.php' ?>
 
     <?php 
 
     if(isset($_SESSION['email'])){
-        echo '<div>';
+        echo '<div class="selection_activity">';
         echo '<h5 class="text text-center"> Hello: '.$_SESSION['email'].', we are happy to have you. Enjoy! </h5>';
         echo '</div>';
 
@@ -233,11 +243,6 @@
     } else {
         echo 'No sports available';
     }
-
-
-    echo '<div class="container mt-3">';
-        echo '<a href="logout.php"><button class="btn btn-danger">LogOut</button></a>';
-        echo '</div>';
     // Close the database connection
     mysqli_close($conn);
     ?>
