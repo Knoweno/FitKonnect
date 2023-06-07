@@ -11,7 +11,7 @@
                         <a class="nav-link" href="http://localhost/fitkonect/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Book a Session</a>
+                        <a class="nav-link" href="http://localhost/fitkonect/client/login.php">Book a Session</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Become a Trainer</a>
