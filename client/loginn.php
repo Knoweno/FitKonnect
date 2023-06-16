@@ -27,10 +27,10 @@
             // Verify the password
             if (password_verify($password, $row['password'])) {
                 // Successful login
-               // $_SESSION['email'] = $row['email'];
-                $_SESSION['firstName'] = $row['firstName'];
+               $_SESSION['email'] = $row['email'];
+                /*$_SESSION['firstName'] = $row['firstName'];
                 $_SESSION['lastName'] = $row['lastName'];
-                $_SESSION['phoneNumber'] = $row['phoneNumber'];
+                $_SESSION['phoneNumber'] = $row['phoneNumber'];*/
                 //echo '<script>showLoginSuccessModal();</script>';
                 header("Location: selectionActivity.php");
                 exit;
@@ -46,7 +46,6 @@
             header("Location: register.php?message=User not found. Please register.");
             exit;
         }
-        mysqli_close($conn);
         mysqli_close($conn);
     }
     ?>

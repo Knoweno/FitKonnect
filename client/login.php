@@ -10,6 +10,11 @@ session_start();
     <title>Login</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hide-alert {
+            display: none;
+        }
+        </style>
 </head>
 <body>
 <?php include '../nav-bar.php' ?>
@@ -50,12 +55,23 @@ session_start();
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
                 <label class="form-check-label" for="remember">Remember Me</label>
             </div>
-            <button type="submit" class="btn btn-primary" name="btnsubmit">Login</button>
+            <div><button type="submit" class="btn btn-primary" name="btnsubmit">Login</button> Or <button type="submit" class="btn btn-primary" name="btnsubmit"><a href="passreset.php" style="color:aliceblue;text-decoration: none;"> Reset my Password</a>.</button></div>
         </form>
         <p>Don't have an account yet? <a href="register.php">Click here to register</a>.</p>
+
     </div>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+    
+
+            // Hide the message modal after 5 seconds
+            setTimeout(function() {
+                $('#errorMessage, #successMessage').fadeOut('slow');
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
