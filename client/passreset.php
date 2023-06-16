@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirect to registration page if user doesn't exist
     if (!$user) {
-        header("Location: registration.php?error=UserNotFound");
+        header("Location: register.php?error=UserNotFound");
         exit();
     }
 
