@@ -14,7 +14,7 @@
     <title>Sports Selection</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href=" http://localhost/fitkonect/css/style.css">
+    <link rel="stylesheet" href=" http://localhost/fitkonnect/css/style.css">
     <style>
         .box {
             border: 1px solid #000000;
