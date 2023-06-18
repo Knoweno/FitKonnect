@@ -53,9 +53,10 @@ session_start();
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                <label class="form-check-label" for="remember">Remember Me</label>
+                <label class="form-check-label" for="remember">Remember Me</label> 
+                <a href="passreset.php"><p style="text-decoration: none;">Forgot Pasword? </p></a>
             </div>
-            <div><button type="submit" class="btn btn-primary" name="btnsubmit">Login</button> Or <button type="submit" class="btn btn-primary" name="btnsubmit"><a href="passreset.php" style="color:aliceblue;text-decoration: none;"> Reset my Password</a>.</button></div>
+            <div><button type="submit" class="btn btn-primary" name="btnsubmit">Login</button> <!-- Or <button type="submit" class="btn btn-primary" name="btnsubmit"><a href="passreset.php" style="color:aliceblue;text-decoration: none;"> Reset my Password</a>.</button> --></div>
         </form>
         <p>Don't have an account yet? <a href="register.php">Click here to register</a>.</p>
 
