@@ -6,7 +6,7 @@ include 'config.php';
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header("Location: http://localhost/fitkonnect/");
+    header("Location: http://obisoke.westeurope.cloudapp.azure.com/fitkonnect/");
     exit();
 }
 
