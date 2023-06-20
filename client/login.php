@@ -61,6 +61,7 @@ session_start();
         <p>Don't have an account yet? <a href="register.php">Click here to register</a>.</p>
 
     </div>
+    <?php include '../footer.php'; ?>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
