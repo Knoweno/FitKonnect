@@ -1,12 +1,15 @@
 
     <?php
     session_start();
-    require_once 'config.php';
+include '../config/config.php';
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        // $username = $_POST['username'];
+        // $password = $_POST['password'];
     
+        $username = sanitizeInput($_POST['username']);
+        $password = sanitizeInput($_POST['password']);
+
         // Sanitize input
         $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
     
@@ -71,3 +74,12 @@
     modal.show();
   }
 </script>
+<?php
+function sanitizeInput($input)
+{
+    $input = trim($input);
+    $input = stripslashes($input);
+    $input = htmlspecialchars($input);
+    return $input;
+}
+?>

@@ -1,10 +1,39 @@
 <?php
+
 // Include the database conn file
 //require_once 'config.php';
-include 'config.php';
+include '../config/config.php';
 
 
+function validateNotEmpty($variables)
+{
+    foreach ($variables as $variable) {
+        if (empty($variable)) {
+            $message ="No submit blank details allowed";
+            $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            //throw new Exception($message);
+            header("Location: register.php?message=" . urlencode($message));
+            exit;
 
+            
+        }
+    }
+}
+
+try {
+    // Sanitize and retrieve the input values
+    $firstName = sanitizeInput($_POST['firstName']);
+    $lastName = sanitizeInput($_POST['lastName']);
+    $email = sanitizeInput($_POST['email']);
+    $telephone = sanitizeInput($_POST['telephone']);
+    $dob = sanitizeInput($_POST['dob']);
+    $password = sanitizeInput($_POST['password']);
+    $confirmPassword = sanitizeInput($_POST['confirmPassword']);
+
+    // Validate that the variables are not empty
+    $variables = [$firstName, $lastName, $email, $telephone, $dob, $password, $confirmPassword];
+    validateNotEmpty($variables);
+/*
 // Retrieve form data and sanitize
 $firstName = sanitizeInput($_POST['firstName']);
 $lastName = sanitizeInput($_POST['lastName']);
@@ -12,7 +41,8 @@ $email = sanitizeInput($_POST['email']);
 $telephone = sanitizeInput($_POST['telephone']);
 $dob = sanitizeInput($_POST['dob']);
 $password = sanitizeInput($_POST['password']);
-$confirmPassword = sanitizeInput($_POST['confirmPassword']);
+$confirmPassword = sanitizeInput($_POST['confirmPassword']); 
+*/
 
 // Validate form data
 $errors = array();
@@ -76,8 +106,10 @@ if (empty($errors)) {
     $safeEmail = mysqli_real_escape_string($conn, $email);
     $safeTelephone = mysqli_real_escape_string($conn, $telephone);
     $query = "INSERT INTO tblusers (firstName, lastName, email, phoneNumber, dateOfBirth, password) VALUES ('$safeFirstName', '$safeLastName', '$safeEmail', '$safeTelephone', '$dob', '$hashedPassword')";
-    mysqli_query($conn, $query);
-    $message = "Registration successful";
+    //mysqli_query($conn, $query);
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    $message = "Registration successful"; 
 } else {
     $message = implode("<br>", $errors);
 }
@@ -89,6 +121,10 @@ mysqli_close($conn);
 header("Location: register.php?message=" . urlencode($message));
 exit();
 
+} catch (Exception $e) {
+    // Handle the exception and display the error message
+    echo $e->getMessage();
+}
 // Function to sanitize form input
 function sanitizeInput($input)
 {
@@ -98,3 +134,27 @@ function sanitizeInput($input)
     return $input;
 }
 ?>
+
+
+
+
+<?php
+/*
+// Database processing
+    include '../config/config.php'; // Include your database configuration file or establish a connection here
+
+    // Prepare the SQL query
+    $stmt = mysqli_prepare($conn, "INSERT INTO tblusers (firstName, lastName, email, phoneNumber, dateOfBirth, password) VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, 'ssssss', $firstName, $lastName, $email, $telephone, $dob, $password);
+
+    // Execute the SQL query
+    mysqli_stmt_execute($stmt);
+
+    // Close the statement and database connection
+    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+
+    // Redirect to a success page or display a success message
+    header("Location: success.php");
+    exit;*/
+    ?>

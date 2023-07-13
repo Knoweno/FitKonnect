@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$socket = '3306';
+$socket = '3307';
 $user = 'root';
 $password = '';
 $database = 'FitKonnect';

@@ -1,6 +1,6 @@
 <?php 
   // Include the database connection file
- require_once 'config.php';
+  include '../config/config.php';
 
   // Start the session
   session_start();

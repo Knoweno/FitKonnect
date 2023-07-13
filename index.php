@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-</head>
+</head> 
 <body>
 <?php  
 include 'nav-bar.php' ;

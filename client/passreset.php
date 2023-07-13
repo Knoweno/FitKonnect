@@ -1,12 +1,14 @@
 <?php
 // reset.php
-include 'config.php';
+//include 'config.php';
+include '../config/config.php';
+
 // Check if the user is already logged in, if so, redirect to home page
 // Assuming you have a session management system in place
 session_start();
 
 if (isset($_SESSION['user_id'])) {
-    header("Location: http://obisoke.westeurope.cloudapp.azure.com/fitkonnect/");
+    header("Location: links.php");
     exit();
 }
 
