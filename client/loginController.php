@@ -2,6 +2,24 @@
     <?php
     session_start();
 include '../config/config.php';
+require_once '../links.php';
+
+function validateNotEmpty($variables)
+{
+  global $locallink;
+    foreach ($variables as $variable) {
+        if (empty($variable)) {
+            $message ="No submit of blank details allowed";
+            $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            //throw new Exception($message);
+            header("Location: $locallink/client/login.php?message=" . urlencode($message));
+            exit;
+
+            
+        }
+    }
+}
+
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // $username = $_POST['username'];
@@ -35,18 +53,20 @@ include '../config/config.php';
                 $_SESSION['lastName'] = $row['lastName'];
                 $_SESSION['phoneNumber'] = $row['phoneNumber'];*/
                 //echo '<script>showLoginSuccessModal();</script>';
-                header("Location: selectionActivity.php");
+                header("Location: $locallink/client/selectionActivity.php");
                 exit;
             } else {
                 // Incorrect password
-                echo "Incorrect password. Please try again or register.";
-                header("Location: login.php?message=Incorrect username/password. Please try again.");
+                //echo "Incorrect password. Please try again or register.";
+                $message= "Incorrect username or password. Please try again.";
+                header("Location: $locallink/client/login.php?message=" .urlencode($message));
                 exit;
             }
         } else {
             // User not found
-            echo "User not found. Please register.";
-            header("Location: register.php?message=User not found. Please register.");
+           // echo "Incorrect details.Please try again or register";
+            $message= "Incorrect username or password. Please try again.";
+            header("Location: $locallink/client/login.php?message=" . urlencode($message));
             exit;
         }
         mysqli_close($conn);

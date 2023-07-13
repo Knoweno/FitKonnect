@@ -9,7 +9,7 @@ function validateNotEmpty($variables)
 {
     foreach ($variables as $variable) {
         if (empty($variable)) {
-            $message ="No submit blank details allowed";
+            $message ="No submit of blank details allowed";
             $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
             //throw new Exception($message);
             header("Location: register.php?message=" . urlencode($message));
