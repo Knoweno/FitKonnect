@@ -43,7 +43,7 @@ session_start();
         }
         
         ?>
-        <form method="POST" action="loginn.php">
+        <form method="POST" action="loginController.php">
             <div class="form-group">
                 <label for="username">Email or Phone Number:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
