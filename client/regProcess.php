@@ -20,6 +20,7 @@ function validateNotEmpty($variables)
     }
 }
 
+
 try {
     // Sanitize and retrieve the input values
     $firstName = sanitizeInput($_POST['firstName']);
