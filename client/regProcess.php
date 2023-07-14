@@ -124,7 +124,11 @@ exit();
 
 } catch (Exception $e) {
     // Handle the exception and display the error message
-    echo $e->getMessage();
+            $message ="No submit of blank details allowed";
+            $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            header("Location: register.php?message=" . urlencode($message));
+            exit;
+    //echo $e->getMessage();
 }
 // Function to sanitize form input
 function sanitizeInput($input)

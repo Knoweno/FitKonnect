@@ -2,11 +2,33 @@
 // Include the database conn file
 //require_once 'config.php';
 include '../config/config.php';
+function validateNotEmpty($variables)
+{
+    foreach ($variables as $variable) {
+        if (empty($variable)) {
+            $message ="No submit of blank details allowed";
+            $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            //throw new Exception($message);
+            header("Location: trainer.php?message=" . urlencode($message));
+            exit;
 
-// Retrieve form data and sanitize
-$email = sanitizeInput($_POST['email']);
+            
+        }
+    }
+}
+
+try {
+    // Sanitize and retrieve the input values
+    $email = sanitizeInput($_POST['email']);
 $password = sanitizeInput($_POST['password']);
 $confirmPassword = sanitizeInput($_POST['confirmPassword']);
+
+
+    // Validate that the variables are not empty
+    $variables = [$email, $password, $confirmPassword];
+    validateNotEmpty($variables);
+
+
 
 // Validate form data
 $errors = array();
@@ -57,7 +79,15 @@ mysqli_close($conn);
 // Return the message to the registration page
 header("Location: trainer.php?message=" . urlencode($message));
 exit();
-
+} catch (Exception $e) {
+    // Handle the exception and display the error message
+    $message ="No submit of blank details allowed";
+            $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            //throw new Exception($message);
+            header("Location: trainer.php?message=" . urlencode($message));
+            exit;
+   // echo $e->getMessage();
+}
 // Function to sanitize form input
 function sanitizeInput($input)
 {

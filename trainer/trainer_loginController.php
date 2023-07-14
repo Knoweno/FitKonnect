@@ -1,11 +1,13 @@
 <?php
 session_start();
 include '../config/config.php';
-$link = 'http://localhost/Projects/FitKonnect';
+require_once '../links.php';
+//$link = 'http://localhost/Projects/FitKonnect';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
+
 
     // Sanitize input
     $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
@@ -53,7 +55,7 @@ if (empty($username) || empty($password)) {
     } else {
         // User not found
         echo "User not found. Please register.";
-        header("Location: $link/register0.php?message=User not found. Please register.");
+        header("Location: $locallink/register0.php?message=User not found. Please register.");
         exit;
     }
 
