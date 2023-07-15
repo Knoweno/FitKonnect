@@ -60,14 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Create the "trainer_docs" folder if it doesn't exist
-    $uploadPath = 'http://localhost/Projects/FitKonnect/knowen/trainer_docs/';
-    //$locallink="http://localhost/Projects/FitKonnect/knowen/";
-
-    ///Applications/XAMPP/xamppfiles/htdocs/Projects/FitKonnect/knowen
+    $uploadPath = '../trainer_docs/';
     
-    // if (!is_dir($uploadPath)) {
-    //     mkdir($uploadPath, 0755, true);
-    // }
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0755, true);
+    }
 
     // Generate unique filenames for the uploaded files
     $idFileName = uniqid('id_', true) . '.pdf';

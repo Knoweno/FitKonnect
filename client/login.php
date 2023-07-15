@@ -102,6 +102,6 @@ session_start();
         });
        
     </script>
-    <?php session_destroy(); ?>
+    <!-- <?php //session_destroy(); ?> -->
 </body>
 </html>

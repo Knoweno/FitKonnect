@@ -1,30 +1,36 @@
 <?php
+require_once '../links.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
     // Generate a random number as the folder name
     // $folderName = mt_rand();
 
     // // Create the folder
     // $path = 'http://localhost/Projects/FitKonnect/knowen/' . $folderName;
-    // if (!is_dir($path)) {
-    //     if (!mkdir($path, 0777)) {
-    //         echo "Failed to create the folder.";
-    //     } else {
-    //         echo "Folder created successfully!";
-    //     }
-    // } else {
-    //     echo "Folder already exists.";
-    // }
+   
   
     //mkdir("test");
-    $path='/Applications/XAMPP/xamppfiles/htdocs/Projects/FitKonnect/knowen/ttv';
-    $permissions =0777;
-    $rec =false;
-    $context=null;
-    //mkdir('/Applications/XAMPP/xamppfiles/htdocs/Projects/FitKonnect/knowen/', 0777, true);
-    mkdir($path,$permissions,$rec,$context);
+    // $path='localhost/Projects/FitKonnect/knowen/';
+    // $permissions =0777;
+    // $rec =false;
+    // $context=null;
+    // //mkdir('/Applications/XAMPP/xamppfiles/htdocs/Projects/FitKonnect/knowen/', 0777, true);
+    // mkdir($path,$permissions);
+    $uploadPath = '../FitkonnectDocs/trainer_Documents101';
     
-   
 
+    if (!is_dir($uploadPath)) {
+        mkdir($uploadPath, 0755, true);
+    }
+//  if (!is_dir($path)) {
+//         if (!mkdir($path, 0777)) {
+//             echo "Failed to create the folder.";
+//         } else {
+//             echo "Folder created successfully!";
+//         }
+//     } else {
+//         echo "Folder already exists.";
+//     }
 
 
 }
