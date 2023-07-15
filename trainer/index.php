@@ -1,6 +1,7 @@
 <?php 
 //include 'trainer_loginProcess.php' 
 session_start();
+require_once '../links.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +19,8 @@ session_start();
 </head>
 <body>
 <?php include '../nav-bar.php' ?>
-<?php if(isset($_SESSION['email'])){
-    header("Location: links.php/trainer/trainer_registration.php");
+<?php if(isset($_SESSION['trainer_email'])){
+    header("Location: $locallinks/trainer/trainer_registration.php");
 } ?>
     <div class="container" style="padding-top: 100px;;">
   <div class="row">
