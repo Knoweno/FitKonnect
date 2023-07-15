@@ -91,6 +91,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+
+
+
+
+    
     // Insert uploaded file details into the database
     $query = "INSERT INTO tbltrainerdocs (trainer_id, id_path, license_cert_path, business_registration_cert_path) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);

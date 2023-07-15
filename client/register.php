@@ -1,3 +1,7 @@
+<?php  
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,23 +16,33 @@
         .hide-alert {
             display: none;
         }
+    /* .alert-message {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+} */
     </style>
 </head>
 <body>
 <?php include '../nav-bar.php' ?>
     <div class="container mt-5">
         <h1>Registration</h1>
-       <?php
-        if (isset($_GET['message'])) {
-            $message = $_GET['message'];
-            if ($message !== "Registration successful") {
-                echo '<div id="errorMessage" class="alert alert-danger">' . $message . '</div>';
-            } else {
-                echo '<div id="successMessage" class="alert alert-success">' . $message . '</div>';
-            }
-        }
-        ?>
-        <form id="registrationForm" method="POST" action="regProcess.php">
+       
+<?php if (isset($_SESSION['success_message'])) { ?>
+        <div class="alert alert-success alert-message" role="alert">
+            <?php echo $_SESSION['success_message']; ?>
+        </div>
+    <?php } elseif (isset($_SESSION['error_message'])) { ?>
+        <div class="alert alert-danger alert-message" role="alert">
+            <?php echo $_SESSION['error_message']; ?>
+        </div>
+    <?php } ?>
+
+
+
+        <form id="registrationForm" method="POST" action="registerController.php">
             <div class="form-group">
                 <label for="firstName">First Name</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" required>
@@ -82,11 +96,13 @@
                 todayHighlight: true
             });
          
-
-            // Show the message modal
-            <?php if (isset($_GET['message'])) { ?>
-                $('#messageModal').modal('show');
-            <?php } ?>
+            setTimeout(function() {
+            var alertMessages = document.querySelectorAll('.alert-message');
+            alertMessages.forEach(function(alert) {
+                alert.remove();
+            });
+        }, 5000);
+            
 
             // Hide the message modal after 5 seconds
             setTimeout(function() {
@@ -94,6 +110,6 @@
             }, 5000);
         });
     </script>
- 
+ <?php session_destroy(); ?>
 </body>
 </html>

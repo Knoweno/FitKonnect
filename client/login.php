@@ -1,6 +1,6 @@
 <?php 
 session_start();
-
+//include 'http://localhost/Projects/FitKonnect/sessions/sessions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,14 @@ session_start();
         .hide-alert {
             display: none;
         }
+    .alert-message {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+       
         </style>
 </head>
 <body>
@@ -43,6 +51,16 @@ session_start();
         }
         
         ?>
+
+    <?php if (isset($_SESSION['success_message'])) { ?>
+        <div class="alert alert-success alert-message" role="alert">
+            <?php echo $_SESSION['success_message']; ?>
+        </div>
+    <?php } elseif (isset($_SESSION['error_message'])) { ?>
+        <div class="alert alert-danger alert-message" role="alert">
+            <?php echo $_SESSION['error_message']; ?>
+        </div>
+    <?php } ?>
         <form method="POST" action="loginController.php">
             <div class="form-group">
                 <label for="username">Email or Phone Number:</label>
@@ -62,6 +80,7 @@ session_start();
         <p>Don't have an account yet? <a href="register.php">Click here to register</a>.</p>
 
     </div>
+        
     <?php include '../footer.php'; ?>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -69,12 +88,20 @@ session_start();
     <script>
         $(document).ready(function() {
     
+            setTimeout(function() {
+            var alertMessages = document.querySelectorAll('.alert-message');
+            alertMessages.forEach(function(alert) {
+                alert.remove();
+            });
+        }, 5000);
 
             // Hide the message modal after 5 seconds
             setTimeout(function() {
                 $('#errorMessage, #successMessage').fadeOut('slow');
             }, 5000);
         });
+       
     </script>
+    <?php session_destroy(); ?>
 </body>
 </html>

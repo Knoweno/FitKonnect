@@ -1,20 +1,23 @@
-<?php
+<?
 session_start();
 include '../config/config.php';
 require_once '../links.php';
 
 function validateNotEmpty($variables)
 {
-    global $locallink;
     foreach ($variables as $variable) {
         if (empty($variable)) {
             $message = "No submission of blank details allowed";
-            $_SESSION['error_message'] = $message;
-            $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
-            header("Location: $locallink/client/login.php?message=" . urlencode($message));
-            exit;
+            return [
+                'success' => false,
+                'message' => $message
+            ];
         }
     }
+    
+    return [
+        'success' => true
+    ];
 }
 
 function login($conn, $username, $password)
@@ -36,11 +39,17 @@ function login($conn, $username, $password)
         // Verify the password
         if (password_verify($password, $row['password'])) {
             // Successful login
-            return true;
+            return [
+                'success' => true,
+                'message' => 'Welcome back! You have logged in successfully.'
+            ];
         }
     }
 
-    return false;
+    return [
+        'success' => false,
+        'message' => 'Incorrect username or password. Please try again.'
+    ];
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -48,22 +57,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = sanitizeInput($_POST['password']);
 
     // Validate input
-    validateNotEmpty([$username, $password]);
-
-    // Attempt login
-    if (login($conn, $username, $password)) {
-        // Successful login
-        $_SESSION['email'] = $username;
-        $_SESSION['success_message'] = "Welcome back! You have logged in successfully.";
-        header("Location: $locallink/client/selectionActivity.php");
-        exit;
+    $validationResult = validateNotEmpty([$username, $password]);
+    if (!$validationResult['success']) {
+        $response = $validationResult;
     } else {
-        // Incorrect credentials
-        $message = "Incorrect username or password. Please try again.";
-        $_SESSION['error_message'] = $message;
-        header("Location: $locallink/client/login.php");
-        exit;
+        // Attempt login
+        $loginResult = login($conn, $username, $password);
+        if ($loginResult['success']) {
+            // Successful login
+            $_SESSION['email'] = $username;
+            $_SESSION['success_message'] = $loginResult['message'];
+            $response = [
+                'success' => true,
+                'redirect' => 'https://www.google.com'
+            ];
+        } else {
+            // Incorrect credentials
+            $_SESSION['error_message'] = $loginResult['message'];
+            $response = [
+                'success' => false
+            ];
+        }
     }
+    
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
 }
 ?>
  

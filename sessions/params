@@ -1,0 +1,13 @@
+
+<?php
+require '../links.php';
+
+echo $_SESSION['success_message'] = "Documents uploaded successfully.";
+
+   
+    $_SESSION['error_message'] = "Invalid request method.";
+?>
+
+/Applications/XAMPP/xamppfiles/htdocs/Projects/FitKonnect/sessions/sessions.php
+
+http://localhost/Projects/FitKonnect/sessions/sessions.php

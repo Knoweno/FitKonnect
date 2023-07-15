@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Include the database conn file
 //require_once 'config.php';
 include '../config/config.php';
@@ -10,9 +10,12 @@ function validateNotEmpty($variables)
     foreach ($variables as $variable) {
         if (empty($variable)) {
             $message ="No submit of blank details allowed";
+            $_SESSION['error_message'] = $message;
             $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+            
             //throw new Exception($message);
-            header("Location: register.php?message=" . urlencode($message));
+             header("Location: register.php");
+            header("Location: register.php");
             exit;
 
             
@@ -50,18 +53,25 @@ $errors = array();
 
 // Validate email format
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $errors[] = "Invalid email format";
+    $message = "Invalid email format";
+    $errors[] = $message;
 }
 
 // Check if password and confirm password match
 if ($password !== $confirmPassword) {
-    $errors[] = "Passwords do not match";
+    $message ="Passwords do not match";
+    $errors[] = $message;
+   // $_SESSION['error_message'] = $message;
 }
 
 if (strlen($password) < 6 || strlen($password) > 10) {
-    $errors[] = "Password length should be between 6 and 10 characters";
+    $message ="Password length should be between 6 and 10 characters";
+    $errors[] = $message;
+    //$_SESSION['error_message'] = $message;
 } elseif (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/', $password)) {
-    $errors[] = "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and must not be your name.";
+    $message ="Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and must not be your name.";
+    $errors[] = $message;
+    //$_SESSION['error_message'] = $message;
 }
 
 
@@ -71,7 +81,9 @@ if (empty($errors)) {
     $query = "SELECT * FROM tblusers WHERE email = '$safeEmail'";
     $result = mysqli_query($conn, $query);
     if (mysqli_num_rows($result) > 0) {
-        $errors[] = "User with the submitted email already exists";
+        $message ="User with the submitted email already exists";
+        $errors[] = $message;
+        //$_SESSION['error_message'] = $message;
     }
 }
 
@@ -79,13 +91,18 @@ if (empty($errors)) {
 // Check if telephone number is valid and does not exist in the database
 if (empty($errors)) {
     if (!preg_match('/^[0-9]{10}$/', $telephone)) {
-        $errors[] = "Invalid telephone number. It must be a 10-digit number starting with 0.";
+
+        $message = "Invalid telephone number. It must be a 10-digit number starting with 0.";
+        $errors[] = $message;
+        //$_SESSION['error_message'] = $message;
     } else {
         $safeTelephone = mysqli_real_escape_string($conn, $telephone);
         $query = "SELECT * FROM tblusers WHERE phoneNumber = '$safeTelephone'";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
-            $errors[] = "User with the submitted telephone number already exists";
+            $message = "User with the submitted telephone number already exists";
+            $errors[] = $message;
+            //$_SESSION['error_message'] = $message;
         }
     }
 }
@@ -95,7 +112,9 @@ if (empty($errors)) {
     $age = $today->diff($dobDate)->y;
 
     if ($age < 7) {
-        $errors[] = "Minimum age allowed is 7 years";
+        $message= "Minimum age allowed is 7 years";
+        $errors[] = $message;
+        //$_SESSION['error_message'] = $message;
     }
 }
 
@@ -111,22 +130,27 @@ if (empty($errors)) {
     mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     $message = "Registration successful"; 
+    $_SESSION['success_message']  = $message;
 } else {
     $message = implode("<br>", $errors);
+     $_SESSION['error_message'] = $message;
 }
 
 // Close the database conn
 mysqli_close($conn);
 
 // Return the message to the registration page
-header("Location: register.php?message=" . urlencode($message));
+// header("Location: register.php?message=" . urlencode($message));
+header("Location: register.php");
 exit();
 
 } catch (Exception $e) {
     // Handle the exception and display the error message
             $message ="No submit of blank details allowed";
+            $_SESSION['error_message'] = $message;
             $message=htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
-            header("Location: register.php?message=" . urlencode($message));
+            // header("Location: register.php?message=" . urlencode($message));
+            header("Location: register.php");
             exit;
     //echo $e->getMessage();
 }
@@ -139,27 +163,3 @@ function sanitizeInput($input)
     return $input;
 }
 ?>
-
-
-
-
-<?php
-/*
-// Database processing
-    include '../config/config.php'; // Include your database configuration file or establish a connection here
-
-    // Prepare the SQL query
-    $stmt = mysqli_prepare($conn, "INSERT INTO tblusers (firstName, lastName, email, phoneNumber, dateOfBirth, password) VALUES (?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, 'ssssss', $firstName, $lastName, $email, $telephone, $dob, $password);
-
-    // Execute the SQL query
-    mysqli_stmt_execute($stmt);
-
-    // Close the statement and database connection
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
-
-    // Redirect to a success page or display a success message
-    header("Location: success.php");
-    exit;*/
-    ?>

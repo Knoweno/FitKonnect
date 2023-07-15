@@ -2,11 +2,11 @@
 $host = 'localhost';
 $socket = '3307';
 $user = 'root';
-$password = '';
+$hostpassword = '';
 $database = 'FitKonnect';
 
 // Create connection
-$conn = new mysqli($host, $user, $password, $database, $socket);
+$conn = new mysqli($host, $user, $hostpassword, $database, $socket);
 
 // Check connection
 if ($conn->connect_error) {
