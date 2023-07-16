@@ -1,5 +1,8 @@
 <?php
-$host = 'localhost';
+//$localhost ='20.50.195.68';
+//$localhost ='localhost';
+
+$host = "localhost";
 $socket = '3306';
 $user = 'root';
 $hostpassword = '';

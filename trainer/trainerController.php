@@ -1,13 +1,16 @@
 <?php
 session_start();
 include '../config/config.php';
+require_once '../links.php';
+
 
 function validateNotEmpty($variables)
 {
+    global $locallink;
     foreach ($variables as $variable) {
         if (empty($variable)) {
             $message = "No submission of blank details allowed";
-            header("Location: trainer.php?message=" . urlencode($message));
+            header("Location: $locallink/trainer/trainer.php?message=" . urlencode($message));
             exit;
         }
     }
@@ -66,7 +69,7 @@ try {
         mysqli_stmt_close($stmt);
 
         $message = "Registration successful";
-        header("Location: trainer_registration.php");
+        header("Location: $locallink/trainer/trainer_registration.php");
     } else {
         $message = implode("<br>", $errors);
     }
@@ -75,12 +78,12 @@ try {
     mysqli_close($conn);
 
     // Return the message to the registration page
-    header("Location: trainer.php?message=" . urlencode($message));
+    header("Location: $locallink/trainer/trainer.php?message=" . urlencode($message));
     exit();
 } catch (Exception $e) {
     // Handle the exception and display the error message
-    $message = "No submission of blank details allowed";
-    header("Location: trainer.php?message=" . urlencode($message));
+    $message = "Error occured. Please contact System Administrator";
+    header("Location: $locallink/trainer.php?message=" . urlencode($message));
     exit;
 }
 

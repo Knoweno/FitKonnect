@@ -41,13 +41,10 @@
         <?php if ($current_page == 1) { ?>
             <h2>Trainer Registration - Page 1</h2>
             <form method="POST" enctype="multipart/form-data">
-            <?php if (!empty($errors)) { ?>
-                    <div class="alert alert-danger" id="errorMessage">
-                        <?php foreach ($errors as $error) {
-                            echo $error . '<br>';
-                        } ?>
-                    </div>
-                <?php } ?>
+
+          
+
+
                 <div class="form-group">
                     <label>First Name:</label>
                     <input type="text" name="first_name" class="form-control" value="<?php echo isset($firstPageData['first_name']) ? $firstPageData['first_name'] : ''; ?>" required>
