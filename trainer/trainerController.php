@@ -1,16 +1,15 @@
 <?php
 session_start();
 include '../config/config.php';
-require_once '../links.php';
-
+//require_once '../links.php';
 
 function validateNotEmpty($variables)
 {
-    global $locallink;
+    //global $locallink;
     foreach ($variables as $variable) {
         if (empty($variable)) {
-            $message = "No submission of blank details allowed";
-            header("Location: $locallink/trainer/trainer.php?message=" . urlencode($message));
+            $_SESSION['error_message'] = "No submission of blank details allowed";
+            header("Location: trainer.php");
             exit;
         }
     }
@@ -52,13 +51,14 @@ try {
         mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        
+
         if (mysqli_num_rows($result) > 0) {
             $errors[] = "User with the submitted email already exists";
         }
 
         mysqli_stmt_close($stmt);
     }
+    //$_SESSION['error_count'] = count($errors);
 
     if (empty($errors)) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password for security
@@ -68,22 +68,21 @@ try {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
-        $message = "Registration successful";
-        header("Location: $locallink/trainer/trainer_registration.php");
+        $_SESSION['success_message'] = "Registration successful";
+        header("Location: trainer.php");
+        exit;
+    
     } else {
-        $message = implode("<br>", $errors);
+        $_SESSION['error_message'] = implode("<br>", $errors);
+        
+        header("Location: trainer.php");
+        exit;
     }
 
-    // Close the database connection
     mysqli_close($conn);
-
-    // Return the message to the registration page
-    header("Location: $locallink/trainer/trainer.php?message=" . urlencode($message));
-    exit();
 } catch (Exception $e) {
-    // Handle the exception and display the error message
-    $message = "Error occured. Please contact System Administrator";
-    header("Location: $locallink/trainer.php?message=" . urlencode($message));
+    $_SESSION['error_message'] = "Error occurred. Please contact System Administrator";
+    header("Location: trainer.php");
     exit;
 }
 
@@ -96,3 +95,4 @@ function sanitizeInput($input)
     return $input;
 }
 ?>
+

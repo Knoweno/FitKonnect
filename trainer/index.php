@@ -55,10 +55,27 @@ require_once '../links.php';
         </script>";
         unset($_SESSION['error_message']); // Clear the error message
     }
+    if (isset($_SESSION['success_message'])) {
+        echo "Swal.fire({
+            icon: 'success',
+            title: 'Success...',
+            text: '{$_SESSION['success_message']}',
+            showConfirmButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK',
+            timer: 5000
+        }).then(() => {
+            
+                window.location.href = 'https://chat.openai.com/';
+            
+        });";
+        unset($_SESSION['success_message']); // Clear the reset message
+    }
     ?>
 <?php if(isset($_SESSION['trainer_email'])){
     // header("Location: $locallinks/trainer/trainer_registration.php");
     header("Location:trainer_registration.php");
+    unset($_SESSION['trainer_email']);
 } ?>
 
 

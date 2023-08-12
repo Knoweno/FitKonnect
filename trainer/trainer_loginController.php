@@ -28,8 +28,8 @@ if (isset($_POST['btnsubmit'])) {
             // Login successful
             $_SESSION['trainer_email'] = $row['email'];
             $_SESSION['success_message'] = "Login successful.";
-            header("Location: $locallink/trainer/trainer_registration.php");
-            exit;
+            //header("Location: $locallink/trainer/trainer_registration.php");
+            //exit;
         } else {
             // Login failed, set error message for display
             $_SESSION['error_message'] = "Invalid username or password.";

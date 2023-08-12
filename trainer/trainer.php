@@ -1,3 +1,4 @@
+<?php  session_start();  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <!-- Datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!-- Include SweetAlert CSS and JS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <style>
         .center-container {
             display: flex;
@@ -40,11 +44,11 @@
             <h2 class="registration-title">Trainer Registration</h2>
             
             <?php
-            if (isset($_GET['message'])) {
-                $message = $_GET['message'];
-                $alertClass = ($message !== "Registration successful") ? 'alert-danger' : 'alert-success';
-                echo '<div class="alert ' . $alertClass . ' message">' . $message . '</div>';
-            }
+            // if (isset($_GET['message'])) {
+            //     $message = $_GET['message'];
+            //     $alertClass = ($message !== "Registration successful") ? 'alert-danger' : 'alert-success';
+            //     echo '<div class="alert ' . $alertClass . ' message">' . $message . '</div>';
+            // }
             ?>
             
             <form id="registrationForm" method="POST" action="trainerController.php">
@@ -81,6 +85,41 @@
             </form>
         </div>
     </div>
+
+    <script>
+        <?php
+        
+        if (isset($_SESSION['error_message'])) {
+            echo "Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{$_SESSION['error_message']}',
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+                timer: 5000
+            });";
+            unset($_SESSION['error_message']); // Clear the reset message
+        }
+        if (isset($_SESSION['success_message'])) {
+            echo "Swal.fire({
+                icon: 'success',
+                title: 'Success...',
+                text: '{$_SESSION['success_message']}',
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+                timer: 5000
+            }).then(() => {
+                
+                    window.location.href = 'https://www.jetbrains.com/';
+                
+            });";
+            unset($_SESSION['success_message']); // Clear the reset message
+        }
+        
+        ?>
+    </script>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

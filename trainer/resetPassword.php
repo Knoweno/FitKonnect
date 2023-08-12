@@ -110,7 +110,7 @@ session_start();
                 timer: 5000
             }).then(() => {
                 
-                    window.location.href = 'https://spring.academy/courses/building-a-rest-api-with-spring-boot/lessons/data-contracts';
+                    window.location.href = './';
                 
             });";
             unset($_SESSION['success_message']); // Clear the reset message

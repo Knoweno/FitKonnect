@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6713776c-381f-47a4-bab7-cdc9674acb6b/resourceGroups/KnowenVM/providers/Microsoft.Web/sites/fitkonnect",
+    "appService.deploySubpath": "."
+}
