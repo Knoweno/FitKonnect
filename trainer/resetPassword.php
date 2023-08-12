@@ -63,19 +63,33 @@ session_start();
     
     <script>
         <?php
-        if (isset($_SESSION['reset_message'])) {
-            $icon = $_SESSION['reset_message_type'] === 'success' ? 'success' : 'error';
+        if (isset($_SESSION['error_message'])) {
             echo "Swal.fire({
-                icon: '$icon',
-                title: '{$_SESSION['reset_message_type'] === 'success' ? 'Success' : 'Oops...'}',
-                text: '{$_SESSION['reset_message']}',
+                icon: 'error',
+                title: 'Oops...',
+                text: '{$_SESSION['error_message']}',
                 showConfirmButton: true,
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK',
                 timer: 5000
             });";
-            unset($_SESSION['reset_message']); // Clear the reset message
-            unset($_SESSION['reset_message_type']); // Clear the reset message type
+            unset($_SESSION['error_message']); // Clear the reset message
+        }
+        if (isset($_SESSION['success_message'])) {
+            echo "Swal.fire({
+                icon: 'success',
+                title: 'Success...',
+                text: '{$_SESSION['success_message']}',
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+                timer: 5000
+            }).then(() => {
+                
+                    window.location.href = 'https://spring.academy/courses/building-a-rest-api-with-spring-boot/lessons/data-contracts';
+                
+            });";
+            unset($_SESSION['success_message']); // Clear the reset message
         }
         ?>
     </script>

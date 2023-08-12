@@ -22,10 +22,10 @@ if (isset($_POST['btnsubmit'])) {
     mysqli_stmt_close($stmt);
 
     if (!$user) {
-        $_SESSION['reset_message'] = "An error occurred. Please try again.";
+        $_SESSION['error_message'] = "An error occurred. Please try again.";
     } else {
         if ($newPassword !== $confirmPassword) {
-            $_SESSION['reset_message'] = "Passwords do not match.";
+            $_SESSION['error_message'] = "Passwords do not match.";
         } else {
             // Update the password in the database
             $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
@@ -35,7 +35,7 @@ if (isset($_POST['btnsubmit'])) {
             mysqli_stmt_execute($updateStmt);
             mysqli_stmt_close($updateStmt);
 
-            $_SESSION['reset_message'] = "Password reset successful.Please log in";
+            $_SESSION['success_message'] = "Password reset successful.Please log in";
             //header("Location: localhost/Projects/FitKonnect/trainer/");
         }
     }
