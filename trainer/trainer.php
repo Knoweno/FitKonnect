@@ -1,8 +1,3 @@
-<?php 
-session_start();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,42 +9,60 @@ session_start();
     <!-- Datepicker CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <style>
-        .hide-alert {
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .registration-form {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .registration-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .message {
             display: none;
         }
     </style>
 </head>
 <body>
-<?php include '../nav-bar.php' ?>
-    <div class="container mt-5">
-        <h1>Registration</h1>
-       <?php
-        if (isset($_GET['message'])) {
-            $message = $_GET['message'];
-            if ($message !== "Registration successful") {
-                echo '<div id="errorMessage" class="alert alert-danger">' . $message . '</div>';
-            } else {
-                echo '<div id="successMessage" class="alert alert-success">' . $message . '</div>';
-            }
-        }
-        ?>
-        <form id="registrationForm" method="POST" action="trainerController.php">
+    <?php include '../nav-bar.php' ?>
+
+    <div class="center-container">
+        <div class="registration-form">
+            <h2 class="registration-title">Trainer Registration</h2>
             
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="10" required>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" maxlength="10" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-            <p>Do you have a TRAINER account? <a href="index.php">Click here to login.</a></p>
-        </form>
+            <?php
+            if (isset($_GET['message'])) {
+                $message = $_GET['message'];
+                $alertClass = ($message !== "Registration successful") ? 'alert-danger' : 'alert-success';
+                echo '<div class="alert ' . $alertClass . ' message">' . $message . '</div>';
+            }
+            ?>
+            
+            <form id="registrationForm" method="POST" action="trainerController.php">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" maxlength="10" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <p>Do you have a TRAINER account? <a href="index.php">Click here to login.</a></p>
+            </form>
+        </div>
     </div>
 
     <!-- jQuery -->
@@ -63,19 +76,13 @@ session_start();
     
     <script>
         $(document).ready(function() {
-           
+            $('.message').fadeIn();
 
-            // Show the message modal
-            <?php if (isset($_GET['message'])) { ?>
-                $('#messageModal').modal('show');
-            <?php } ?>
-
-            // Hide the message modal after 5 seconds
+            // Hide the message after 5 seconds
             setTimeout(function() {
-                $('#errorMessage, #successMessage').fadeOut('slow');
+                $('.message').fadeOut('slow');
             }, 5000);
         });
     </script>
- 
 </body>
 </html>
