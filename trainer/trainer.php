@@ -50,15 +50,31 @@
             <form id="registrationForm" method="POST" action="trainerController.php">
                 <div class="form-group">
                     <label for="email">Email Address</label>
+                    <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
                     <input type="email" class="form-control" id="email" name="email" required>
+        </div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
+                    <div class="input-group">
+                    <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
                     <input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="10" required>
+        </div>
                 </div>
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
+                    <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" minlength="6" maxlength="10" required>
+        </div>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Register</button>
                 <p>Do you have a TRAINER account? <a href="index.php">Click here to login.</a></p>
