@@ -112,7 +112,7 @@
                 timer: 5000
             }).then(() => {
                 
-                    window.location.href = 'https://www.jetbrains.com/';
+                    window.location.href = './';
                 
             });";
             unset($_SESSION['success_message']); // Clear the reset message

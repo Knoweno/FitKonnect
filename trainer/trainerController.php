@@ -68,7 +68,7 @@ try {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
 
-        $_SESSION['success_message'] = "Registration successful";
+        $_SESSION['success_message'] = "Registration successful. Please login";
         header("Location: trainer.php");
         exit;
     
