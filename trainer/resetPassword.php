@@ -7,6 +7,7 @@ session_start();
     <title>Forgot Password</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <!-- Include SweetAlert CSS and JS from CDN -->
@@ -42,23 +43,46 @@ session_start();
         ?>
         
         <form action="resetPasswordController.php" method="POST">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
+        <div class="form-group">
+            <label for="email"> Email:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+            <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="new_password"> New Password:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+            <input type="password" class="form-control" id="new_password" name="new_password" required>
+    </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="confirm_password"> Confirm Password:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+    </div>
+        </div>
+        
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" name="btnsubmit">
+                <i class="fas fa-key"></i> Reset Password
+            </button>
             
-            <div class="form-group">
-                <label for="new_password">New Password:</label>
-                <input type="password" class="form-control" id="new_password" name="new_password" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password:</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-            </div>
-            
-            <button type="submit" class="btn btn-primary" name="btnsubmit">Reset Password</button>
-        </form>
+            <a href="./" class="btn btn-secondary">
+                <i class="fas fa-times-circle"></i> Cancel
+            </a>
+        </div>
+    </form>
     </div>
     
     <script>

@@ -9,9 +9,10 @@ require_once '../links.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Include Bootstrap CSS from CDN -->
+    <!-- Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Include SweetAlert CSS and JS from CDN -->
+    <!-- SweetAlert CSS and JS from CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <style>
@@ -64,7 +65,7 @@ require_once '../links.php';
 
     <div class="center-container">
         <div class="login-form">
-        <h2 class="login-title">Register, Train, EARN</h2>
+        <h2 class="login-title">Register. Train. EARN</h2>
             <h3 class="login-title">Sign Up / Login</h3>
             
             <?php
@@ -80,19 +81,29 @@ require_once '../links.php';
             
             <form id="registrationForm" method="POST" action="trainer_loginController.php">
             <div class="form-group">
-                <label for="username">Email or Phone Number:</label>
+                <label for="username"> Email or Phone Number:</label>
+                <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
                 <input type="text" class="form-control" id="username" name="username" required>
+</div>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="password"> Password:</label>
+                <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                </div>
                 <input type="password" class="form-control" id="password" name="password" required>
+</div>
             </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                <label class="form-check-label" for="remember">Remember Me</label> 
-                <a href="resetPassword.php"><p style="text-decoration: none;">Forgot Password? </p></a>
+                <label class="form-check-label" for="remember"> Remember Me</label> 
+                <a href="resetPassword.php"><p style="text-decoration: none;"><i class="fas fa-key"></i> Forgot Password </p></a>
             </div>
-            <button type="submit" class="btn btn-primary" name="btnsubmit">Login</button>
+            <button type="submit" class="btn btn-primary" name="btnsubmit"><i class="fas fa-sign-in-alt"></i> Login</button>
                 <p>Don't have a TRAINER account yet? <a href="trainer.php">Click here to register</a>.</p>
             </form>
         </div>
