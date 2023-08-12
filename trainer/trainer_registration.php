@@ -1,4 +1,5 @@
-<?php include 'trainerController.php' ?>
+<?php //include 'trainerController.php' ?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
