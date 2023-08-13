@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     mysqli_stmt_close($stmt);
 
                     $_SESSION['success_message'] = "Documents uploaded successfully.";
-                    header("Location: success.php");
+                    header("Location: trainerdoc.php");
                     exit;
                 }
             }

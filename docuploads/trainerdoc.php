@@ -5,6 +5,7 @@
     <title>Trainer Document Upload</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.css">
     <style>
         body {
             background-color: #ffffff;
@@ -75,19 +76,10 @@
         </form>
     </div>
 
-    <?php if (isset($_SESSION['success_message'])) { ?>
-        <div class="alert alert-success alert-message" role="alert">
-            <?php echo $_SESSION['success_message']; ?>
-        </div>
-    <?php } elseif (isset($_SESSION['error_message'])) { ?>
-        <div class="alert alert-danger alert-message" role="alert">
-            <?php echo $_SESSION['error_message']; ?>
-        </div>
-    <?php } ?>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.0/dist/sweetalert2.min.js"></script>
     <script>
         function updateFileName(inputId) {
             var fileInput = document.getElementById(inputId);
@@ -96,13 +88,34 @@
             label.innerHTML = fileName;
         }
 
-        // Auto-hide alert messages after 5 seconds
-        setTimeout(function() {
-            var alertMessages = document.querySelectorAll('.alert-message');
-            alertMessages.forEach(function(alert) {
-                alert.remove();
+        <?php if (isset($_SESSION['success_message'])) { ?>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '<?php echo $_SESSION['success_message']; ?>',
+                onClose: function() {
+                    hideAlertMessages();
+                    <?php unset($_SESSION['success_message']); ?>
+                }
             });
-        }, 5000);
+        <?php } elseif (isset($_SESSION['error_message'])) { ?>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '<?php echo $_SESSION['error_message']; ?>',
+                onClose: function() {
+                    hideAlertMessages();
+                    <?php unset($_SESSION['error_message']); ?>
+                }
+            });
+        <?php } ?>
+
+        function hideAlertMessages() {
+            Swal.close();
+        }
+
+        // Auto-hide alert messages after 5 seconds
+        setTimeout(hideAlertMessages, 5000);
     </script>
 </body>
 </html>
