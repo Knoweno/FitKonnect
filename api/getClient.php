@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     // Create the SQL query
-    $query = 'SELECT * FROM tblusers';
+    $query = 'SELECT * FROM tblusers ORDER BY id DESC';
 
     // Execute the query
     $result = $conn->query($query);
