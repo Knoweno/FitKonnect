@@ -1,7 +1,7 @@
-RewriteEngine On
+#RewriteEngine On
 
 # Rewrite requests to /Projects/FitKonnect/trainer/trainer to /Projects/FitKonnect/trainer/trainer.php
-RewriteRule ^Projects/FitKonnect/trainer/trainer$ Projects/FitKonnect/trainer/trainer.php [L]
+#RewriteRule ^Projects/FitKonnect/trainer/trainer$ Projects/FitKonnect/trainer/trainer.php [L]
 
 # Handle other rewrite rules here...
 

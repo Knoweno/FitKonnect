@@ -69,14 +69,14 @@ require_once '../links.php';
                     timer: 1000,
                     confirmButtonText: 'OK',
                 }).then(() => {
-                    window.location.href = 'trainer_registration.php';
+                    window.location.href = 'regis.php';
                 });
             </script>";
             unset($_SESSION['success_message']); // Clear the success message
             exit();
         } else {
             echo "<script>
-                window.location.href = 'trainer_registration.php';
+                window.location.href = 'regis.php';
             </script>";
             // unset($_SESSION['email']);
             exit();
