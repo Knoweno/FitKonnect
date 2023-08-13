@@ -30,7 +30,7 @@
     <script>
         // Function to fetch trainers data and populate the table
         function fetchTrainersData() {
-            fetch('http://localhost/Projects/FitKonnect/api/fetch_trainers.php', {
+            fetch('http://localhost/Projects/FitKonnect/trainer/gettrainers.php', {
                 method: 'GET',
             })
             .then(response => response.json())
