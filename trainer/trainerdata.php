@@ -16,6 +16,7 @@
                     <th>Education Level</th>
                     <th>Date of Birth</th>
                     <th>Gender</th>
+                    <th>Profile Completion</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -47,6 +48,7 @@
                         <td>${trainer.educationLevel}</td>
                         <td>${trainer.dateOfBirth}</td>
                         <td>${trainer.gender}</td>
+                        <td>${trainer.isProfileComplete}</td>
                         <td>
                             <button class="btn btn-sm btn-info">Edit</button>
                             <button class="btn btn-sm btn-danger">Delete</button>
