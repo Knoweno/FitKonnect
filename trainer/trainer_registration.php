@@ -1,5 +1,8 @@
-<?php //include 'trainerController.php' ?>
-<?php session_start();?>
+<?php include 'trainer_registrationController.php'; 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -40,8 +40,8 @@ require_once '../links.php';
 </head>
 <body>
 <?php include '../nav-bar.php' ?>
-<?php
-    if (isset($_SESSION['error_message'])) {
+    <?php
+        if (isset($_SESSION['error_message'])) {
         echo "<script>
             Swal.fire({
                 icon: 'error',
@@ -54,29 +54,37 @@ require_once '../links.php';
             });
         </script>";
         unset($_SESSION['error_message']); // Clear the error message
-    }
-    if (isset($_SESSION['success_message'])) {
-        echo "Swal.fire({
-            icon: 'success',
-            title: 'Success...',
-            text: '{$_SESSION['success_message']}',
-            showConfirmButton: true,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'OK',
-            timer: 5000
-        }).then(() => {
-            
-                window.location.href = 'https://chat.openai.com/';
-            
-        });";
-        unset($_SESSION['success_message']); // Clear the reset message
+        }
+   
+    if (isset($_SESSION['email'])) {
+        // Check if a success message is set
+        if (isset($_SESSION['success_message'])) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success...',
+                    text: '{$_SESSION['success_message']}',
+                    showConfirmButton: true,
+                    confirmButtonColor: '#3085d6',
+                    timer: 1000,
+                    confirmButtonText: 'OK',
+                }).then(() => {
+                    window.location.href = 'trainer_registration.php';
+                });
+            </script>";
+            unset($_SESSION['success_message']); // Clear the success message
+            exit();
+        } else {
+            echo "<script>
+                window.location.href = 'trainer_registration.php';
+            </script>";
+            // unset($_SESSION['email']);
+            exit();
+        }
     }
     ?>
-<?php if(isset($_SESSION['trainer_email'])){
-    // header("Location: $locallinks/trainer/trainer_registration.php");
-    header("Location:trainer_registration.php");
-    unset($_SESSION['trainer_email']);
-} ?>
+
+
 
 
 
@@ -85,18 +93,9 @@ require_once '../links.php';
         <h2 class="login-title">Register. Train. EARN</h2>
             <h3 class="login-title">Sign Up / Login</h3>
             
-            <?php
-    if (isset($_GET['message'])) {
-        $message = $_GET['message'];
-        if ($message !== "Registration successful") {
-            echo '<div id="errorMessage" class="alert alert-danger">' . $message . '</div>';
-        } else {
-            echo '<div id="successMessage" class="alert alert-success">' . $message . '</div>';
-        }
-    }
-    ?>
             
-            <form id="registrationForm" method="POST" action="trainer_loginController.php">
+            
+            <form id="LoginForm" method="POST" action="trainer_loginController.php">
             <div class="form-group">
                 <label for="username"> Email or Phone Number:</label>
                 <div class="input-group">
