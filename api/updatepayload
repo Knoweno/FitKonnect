@@ -1,0 +1,7 @@
+{
+    "email": "john.doe@example.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "phoneNumber": "1234567890",
+    "dateOfBirth": "1990-01-01"
+}
