@@ -61,7 +61,7 @@
             event.preventDefault();
 
             const formData = new FormData(this);
-            //const email = 'obiso@obysoft.com'; // Replace with the user's email or retrieve from session
+            //const email = 'obiso@obysoft.com'; 
                  // Retrieve email from active session
         const email = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
 
@@ -96,6 +96,7 @@ if (!email) {
                     });
                     // Clear form fields after successful submission
                     this.reset();
+                    document.getElementById('charCount').textContent = '500';
                 } else if (data.error) {
                     Swal.fire({
                         icon: 'error',
