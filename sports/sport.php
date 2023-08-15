@@ -1,32 +1,49 @@
-<?php  session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Sports Information</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
     <div class="container mt-5">
         <h2>Add Sports Information</h2>
-        <form id="addSportsForm">
-            <div class="form-group">
-                <label for="sportsName">Sports Name:</label>
-                <input type="text" id="sportsName" name="sportsName" class="form-control" required>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#addSportsModal"><i class="fas fa-plus"></i> Add Sports</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addSportsModal" tabindex="-1" role="dialog" aria-labelledby="addSportsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addSportsModalLabel">Add Sports Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addSportsForm">
+                        <div class="form-group">
+                            <label for="sportsName">Sports Name:</label>
+                            <input type="text" id="sportsName" name="sportsName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sportDescription">Sport Description:</label>
+                            <textarea id="sportDescription" name="sportDescription" class="form-control" rows="5" maxlength="500" required></textarea>
+                            <small class="form-text text-muted">
+                                Characters remaining: <span id="charCount">500</span>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input type="number" id="price" name="price" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Sport</button>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="sportDescription">Sport Description:</label>
-                <textarea id="sportDescription" name="sportDescription" class="form-control" rows="5" maxlength="500" required></textarea>
-                <small class="form-text text-muted">
-                    Characters remaining: <span id="charCount">500</span>
-                </small>
-            </div>
-            <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Add Sports</button>
-        </form>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -62,6 +79,8 @@
                         showConfirmButton: true,
                         text: data.success
                     });
+                    // Clear form fields after successful submission
+                    this.reset();
                 } else if (data.error) {
                     Swal.fire({
                         icon: 'error',
