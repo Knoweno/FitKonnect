@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,8 +61,22 @@
             event.preventDefault();
 
             const formData = new FormData(this);
-            const email = 'obiso@obysoft.com'; // Replace with the user's email or retrieve from session
-              
+            //const email = 'obiso@obysoft.com'; // Replace with the user's email or retrieve from session
+                 // Retrieve email from active session
+        const email = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
+
+// Check if email is available in the session
+if (!email) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        timer: 5000,
+        showConfirmButton: true,
+        text: 'Email is not available in the session.'
+    });
+    return;
+}
+
             fetch('http://localhost/Projects/FitKonnect/sports/addsports.php', {
                 method: 'POST',
                 body: JSON.stringify({ ...Object.fromEntries(formData.entries()), email }),
