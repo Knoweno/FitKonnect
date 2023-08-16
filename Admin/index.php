@@ -1,103 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin Dashboard</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <style>
-    /* Global Styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      flex: 1;
-    }
-
-    /* Header Styles */
-    .header {
-      background-color: yellow;
-      color: black;
-      padding: 20px;
-    }
-
-    .header h1 {
-      margin: 0;
-    }
-
-    /* Sidebar Styles */
-    .sidebar {
-      background-color: yellow;
-      color: black;
-      float: left;
-      width: 20%;
-      padding: 20px;
-    }
-
-    .sidebar ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .sidebar li {
-      margin-bottom: 10px;
-    }
-
-    .sidebar a {
-      text-decoration: none;
-      color: black;
-      font-weight: bold;
-    }
-
-    /* Content Styles */
-    .content {
-      float: right;
-      width: 80%;
-      padding: 20px;
-      background-color: #fff;
-    }
-
-    /* Footer Styles */
-    .footer {
-      background-color: yellow;
-      color: black;
-      text-align: center;
-      padding: 20px;
-    }
-  </style>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>Admin Dashboard</h1>
-    </div>
-    <div class="sidebar">
-      <ul>
-        <li><a href="trainers.php">Trainers</a></li>
-        <li><a href="clients.php">Clients</a></li>
-        <li><a href="locations.php">Locations</a></li>
-        <li><a href="sports.php">Sports</a></li>
-      </ul>
-    </div>
-    <div class="content">
-      <h2>Welcome to the Admin Dashboard</h2>
-      <p>This is the main content area where you can display various information and manage your application.</p>
-    </div>
-  </div>
-  <footer class="footer">
-    &copy; <?php echo date("Y"); ?> Admin Dashboard. All rights reserved.
-  </footer>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="trainersMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Trainers
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="trainersMenu">
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="loadContent('../trainer/trainerdata.php')">All Trainers</a>
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="loadIframe('../docuploads/docdisplay.php')">Trainer Documents</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="trainersMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Clients
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="trainersMenu">
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="loadContent('../apiconsume/allclients.php')">All Clients</a>
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="loadContent('../apiconsume/')">Add Client</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-  <!-- Bootstrap JS -->
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <div class="container mt-3">
+        <iframe id="contentFrame" src="" width="100%" height="700px" frameborder="0"></iframe>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function loadContent(url) {
+            document.getElementById('contentFrame').src = url;
+        }
+        function loadIframe(url) {
+            document.getElementById('contentFrame').src = url;
+        }
+    </script>
 </body>
 </html>

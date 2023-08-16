@@ -1,5 +1,5 @@
 <?php
-
+include '../config/config.php';
 
 // Check if the request method is DELETE
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
@@ -7,36 +7,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
 
-    // Check if the email field exists in the payload
-    if (!isset($data['email'])) {
+    // Check if the email or clientId field exists in the payload
+    if (!isset($data['email']) && !isset($data['clientId'])) {
         $response = array(
             'message' => 'Validation error',
-            'errors' => ['Email field is required']
+            'error' => ['Email or Client ID field is required']
         );
         http_response_code(400);
         echo json_encode($response);
         exit;
     }
 
-    // Get the email from the payload
-    $email = $data['email'];
+    // Get the email and clientId from the payload
+    $email = isset($data['email']) ? $data['email'] : '';
+    $clientId = isset($data['clientId']) ? $data['clientId'] : '';
 
     // Create a response array
     $response = array();
 
-    // Perform the deletion in the database
-    $query = "DELETE FROM tblusers WHERE email = ?";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 's', $email);
+    // Perform the deletion in the database based on email or clientId
+    if (!empty($email)) {
+        $query = "DELETE FROM tblusers WHERE email = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, 's', $email);
+    } elseif (!empty($clientId)) {
+        $query = "DELETE FROM tblusers WHERE id = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $clientId);
+    } else {
+        $response['error'] = 'Invalid data provided';
+        http_response_code(400);
+        echo json_encode($response);
+        exit;
+    }
+
     mysqli_stmt_execute($stmt);
 
     // Check if any rows were affected
     $rowsAffected = mysqli_stmt_affected_rows($stmt);
     if ($rowsAffected > 0) {
-        $response['message'] = 'User deleted successfully';
+        $response['success'] = 'User deleted successfully';
         http_response_code(200);
     } else {
-        $response['message'] = 'User not found or already deleted';
+        $response['error'] = 'User not found or already deleted';
         http_response_code(404);
     }
 
@@ -52,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
 // Handle unsupported HTTP methods
 $response = array(
-    'message' => 'Method Not Allowed'
+    'error' => 'Method Not Allowed'
 );
 http_response_code(405);
 header('Content-Type: application/json');

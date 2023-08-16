@@ -1,4 +1,5 @@
 <?php
+//include '../config/config.php';
 
 
 // Handle HTTP GET request

@@ -9,7 +9,8 @@
 <body>
     <div class="container mt-5">
         <h2>Update Trainer Information</h2>
-        <button id="openFormBtn" class="btn btn-primary">Click Me</button>
+        <button id="openFormBtn" class="btn btn-primary">Update My Information</button>
+        <a href="../sports/sport.php" id="addSportActivity" class="btn btn-primary"><i class="fas fa-plus"></i> Add Sport Activities</a>
     </div>
 
     <!-- Modal for the form -->
