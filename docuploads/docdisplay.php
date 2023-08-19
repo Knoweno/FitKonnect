@@ -116,7 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="trainer_id">Trainer ID:</label>
                         <input type="text" id="trainer_id" name="trainer_id" class="form-control" value="<?php echo $trainerId; ?>">
                     </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <div class="form-group">
+        <button type="submit" class="btn btn-primary mr-2">Search</button>
+        <button type="button" class="btn btn-success mr-2">Approve</button>
+        <button type="button" class="btn btn-danger">Decline</button>
+    </div>
                 </form>
 
                 <?php if (!empty($error)): ?>
