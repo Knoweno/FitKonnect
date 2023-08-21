@@ -83,7 +83,7 @@
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch('http://localhost/Projects/FitKonnect/api/client.php', {
+                fetch('http://fit.eastus.cloudapp.azure.com/FitKonnect/api/client.php', {
                     method: 'DELETE',
                     body: JSON.stringify({ clientId }),
                     headers: {

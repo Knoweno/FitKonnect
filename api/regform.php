@@ -50,7 +50,7 @@
             const form = event.target;
             const formData = new FormData(form);
             
-            fetch("http://localhost/Projects/FitKonnect/api/createClient.php", {
+            fetch("http://fit.eastus.cloudapp.azure.com/FitKonnect/api/createClient.php", {
                 method: "POST",
                 body: JSON.stringify(Object.fromEntries(formData.entries())),
                 headers: {

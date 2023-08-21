@@ -6,6 +6,6 @@ $locallink="http://fit.eastus.cloudapp.azure.com/FitKonnect/";
 //$localhost ='localhost';
 //20.50.195.68';
 
-echo  $locallink;
+//echo  $locallink;
 
 ?>

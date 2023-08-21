@@ -2,7 +2,7 @@
    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="loginNav">
         <div class="container">
-            <a class="navbar-brand" href="<?php include echo $locallink ?>">FitKonnect</a>
+            <a class="navbar-brand" href="<?php  echo $locallink ?>">FitKonnect</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -20,7 +20,7 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php  include echo $locallink ?>client/logout.php"><button class="btn btn-danger">LogOut</button> </a>
+                        <a class="nav-link" href="<?php  echo $locallink ?>client/logout.php"><button class="btn btn-danger">LogOut</button> </a>
                     </li>
                 </ul>
             </div>
