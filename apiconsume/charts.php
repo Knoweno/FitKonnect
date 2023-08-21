@@ -43,7 +43,7 @@
     <script>
         // Function to fetch user data
         function fetchUserData() {
-            fetch("http://localhost/Projects/FitKonnect/api/client.php", {
+            fetch("http://fit.eastus.cloudapp.azure.com/FitKonnect/api/client.php", {
                 method: "GET"
             })
             .then(response => response.json())

@@ -34,7 +34,7 @@
 
     <script>
     function fetchUserData() {
-        fetch("http://localhost/Projects/FitKonnect/api/client.php", {
+        fetch("http://fit.eastus.cloudapp.azure.com/FitKonnect/api/client.php", {
             method: "GET"
         })
         .then(response => response.json())
@@ -75,7 +75,7 @@
     // Function to edit a client record
     function editClient() {
         //fetch(`http://localhost/Projects/FitKonnect/api/client.php?id=${clientId}`
-        fetch(`http://localhost/Projects/FitKonnect/api/client.php`, {
+        fetch(`http://fit.eastus.cloudapp.azure.com/FitKonnect/api/client.php`, {
             method: "PUT"
         })
         .then(response => response.json())

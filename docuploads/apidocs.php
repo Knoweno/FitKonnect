@@ -100,7 +100,7 @@
 
             var formData = new FormData(this);
 
-            fetch("http://localhost/Projects/FitKonnect/docuploads/apidocsController.php", {
+            fetch("http://fit.eastus.cloudapp.azure.com/FitKonnect/docuploads/apidocsController.php", {
                 method: "POST",
                 body: formData,
             })

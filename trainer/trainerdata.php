@@ -31,7 +31,7 @@
     <script>
         // Function to fetch trainers data and populate the table
         function fetchTrainersData() {
-            fetch('http://localhost/Projects/FitKonnect/trainer/gettrainers.php', {
+            fetch('http://fit.eastus.cloudapp.azure.com/FitKonnect/trainer/gettrainers.php', {
                 method: 'GET',
             })
             .then(response => response.json())

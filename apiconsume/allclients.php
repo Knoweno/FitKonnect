@@ -1,3 +1,4 @@
+<?php header("Access-Control-Allow-Origin: *"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
     <script>
     function fetchUserData() {
-        fetch("http://localhost/Projects/FitKonnect/api/client.php", {
+        fetch("http://fit.eastus.cloudapp.azure.com/FitKonnect/api/client.php", {
             method: "GET"
         })
         .then(response => response.json())
