@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Successful login
         $_SESSION['email'] = $username;
         $_SESSION['success_message'] = "Welcome back! You have logged in successfully.";
-        header("Location: $locallink/client/selectionActivity.php");
+        header("Location: $locallink/sports/");
         exit;
     } else {
         // Incorrect credentials

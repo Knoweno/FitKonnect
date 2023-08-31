@@ -34,7 +34,7 @@
             </ul>
             <form class="form-inline">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchInput">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchSports()">Search</button>
+                //<button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="searchSports()">Search</button>
             </form>
         </div>
     </nav>
@@ -50,12 +50,15 @@
         </div>
     </div>
     <!-- <div class="container mt-5">
+								
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-center">Cart</h2>
                 <ul class="cart-list" id="cartList">
                    
                 </ul>
+																
+																														
             </div>
         </div>
     </div> -->
@@ -118,7 +121,20 @@
                 // Initial rendering
                 renderSports(sportsData);
 
-                searchInput.addEventListener('input', searchSports);
+																				 
+
+                //searchInput.addEventListener('input', searchSports);
+				searchInput.addEventListener('input', searchSportsAutomatically);
+
+                function searchSportsAutomatically() {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const filteredData = sportsData.filter(sport => sport.sportsName.toLowerCase().includes(searchTerm));
+                    renderSports(filteredData);
+                }
+																	   
+																														 
+											   
+				 
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
