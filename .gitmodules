@@ -1,0 +1,6 @@
+[submodule "MypesaAPI2"]
+	path = MypesaAPI2
+	url = https://github.com/Knoweno/MypesaAPI.git
+[submodule "PaymentsPush"]
+	path = PaymentsPush
+	url = https://github.com/Knoweno/MypesaAPI.git
